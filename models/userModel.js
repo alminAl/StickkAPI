@@ -45,8 +45,8 @@ userSchema.statics.signup = async function (
   mobile,
   email,
   password,
-  about,
-  profileImg
+  profileImg,
+  about
 ) {
   // check existing email
   const existEmail = await this.findOne({ email });
@@ -64,8 +64,8 @@ userSchema.statics.signup = async function (
     mobile,
     email,
     password: hash,
-    about,
     profileImg,
+    about,
   });
 
   return user;

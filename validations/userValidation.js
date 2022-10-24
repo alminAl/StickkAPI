@@ -5,7 +5,7 @@ const userSignUpValidation = yup.object({
   userName: yup.string().required(),
   mobile: yup.string().min(11).max(11).required(),
   email: yup.string().email().required(),
-  password: yup.string().min(4).max(8).required(),
+  password: yup.string().min(6).max(12).required(),
   about: yup.string().max(100).required(),
 });
 

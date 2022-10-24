@@ -49,7 +49,8 @@ const loginUser = async (req, res) => {
   try {
     const user = await userModel.login(email, password);
     const token = createToken(user._id);
-    res.status(201).json({ email, token });
+    const userName = user.userName;
+    res.status(201).json({ email, token, userName });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -69,16 +70,17 @@ const userProfile = async (req, res) => {
 //! update user profile
 const updateUser = async (req, res) => {
   const user_id = req.user;
-  const { email, userName, mobile, about } = req.body;
+  const { userName, email, mobile, profileImg, about } = req.body;
   try {
     const user = await userModel
       .findOneAndUpdate(
         { _id: user_id },
         {
-          email,
           userName,
+          email,
           mobile,
           about,
+          profileImg,
         },
         {
           returnOriginal: false,
@@ -91,7 +93,7 @@ const updateUser = async (req, res) => {
   }
 };
 
-// change password
+//! change password
 const changePassword = async (req, res) => {
   try {
     const user_id = req.user;
