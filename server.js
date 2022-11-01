@@ -1,12 +1,14 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const bodyParser = require("body-parser");
+// const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
 //! import router
 const userRouter = require("./routers/userRoute.js");
 const userProfileRouter = require("./routers/userProfileRoute.js");
+const commitRouter = require("./routers/commitRouter.js");
+
 
 // ! express app
 const app = express();
@@ -24,6 +26,8 @@ app.get("/", async (req, res) => {
 //! use router
 app.use("/api/auth", userRouter);
 app.use("/api/user/profile", userProfileRouter);
+
+app.use('/api/commit', commitRouter)
 
 //! mongoose connect to database
 mongoose
