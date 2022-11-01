@@ -23,8 +23,7 @@ const securePassword = async (password) => {
 //! sign up controller
 const signUpUser = async (req, res) => {
   // get user Information
-  const { userName, mobile, email, password, about, profileImg, isAdmin } =
-    req.body;
+  const { userName, mobile, email, password, about, isAdmin } = req.body;
 
   try {
     const user = await userModel.signup(
@@ -33,7 +32,6 @@ const signUpUser = async (req, res) => {
       email,
       password,
       about,
-      profileImg,
       isAdmin
     );
     const token = createToken(user._id);
