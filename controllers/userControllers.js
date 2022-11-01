@@ -36,8 +36,8 @@ const signUpUser = async (req, res) => {
       profileImg,
       isAdmin
     );
-    // const token = createToken(user._id);
-    res.status(201).json({ email });
+    const token = createToken(user._id);
+    res.status(201).json({ email, token });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -61,7 +61,7 @@ const userProfile = async (req, res) => {
   try {
     const user_id = req.user;
     const user = await userModel.findById(user_id).select("-password");
-    res.status(200).json({ user, message: "These are all users" });
+    res.status(200).json(user);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

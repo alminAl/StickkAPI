@@ -20,7 +20,7 @@ userProfileRoutes.use(userRequireAuth);
 userProfileRoutes.get("/", userProfile);
 
 //! update user
-userProfileRoutes.patch("/", validation(userUpdateValidation), updateUser);
+userProfileRoutes.patch("/", updateUser);
 
 //! change password
 userProfileRoutes.post(
